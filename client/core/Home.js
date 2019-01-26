@@ -36,7 +36,7 @@ class Home extends Component {
             title="Unicorn Shells"/>
             <CardContent>
               <Typography type="body1" component="p">
-                Welcome to the Mern Skeleton home page
+                Welcome! We've been waiting for you!
               </Typography>
             </CardContent>
           </Card>
