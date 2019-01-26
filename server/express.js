@@ -7,8 +7,13 @@ import helmet from 'helmet'
 import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
+import devBundle from './devBundle'
+import path from 'path'
 
+const CURRENT_WORKING_DIR = process.cwd()
 const app = express()
+
+devBundle.compile(app)
 
 // parse body params and attache them to req.body
 app.use(bodyParser.json())
@@ -23,6 +28,8 @@ app.use(cors())
 app.get('/', (req, res) => {
   res.status(200).send(Template())
 })
+
+app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 
 // mount routes
 app.use('/', userRoutes)
