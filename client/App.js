@@ -5,6 +5,7 @@ import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles'
 import {indigo, pink} from 'material-ui/colors'
 import { hot } from 'react-hot-loader'
 
+// Create a theme instance.
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -26,12 +27,11 @@ const theme = createMuiTheme({
 })
 
 const App = () => (
-    <BrowserRouter>
-      <MuiThemeProvider theme={theme}>
-        <MainRouter/>
-      </MuiThemeProvider>
-    </BrowserRouter>
-  )
- 
-  
-  export default hot(module)(App)
+  <BrowserRouter>
+    <MuiThemeProvider theme={theme}>
+      <MainRouter/>
+    </MuiThemeProvider>
+  </BrowserRouter>
+)
+
+export default hot(module)(App)
