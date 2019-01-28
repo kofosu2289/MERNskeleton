@@ -2,8 +2,7 @@
   "name": "mern-skeleton",
   "version": "1.0.0",
   "description": "A MERN stack skeleton web application",
-  "author": "Shama Hoque",
-  "license": "MIT",
+  "author": "Kenneth Ofosu",
   "keywords": [
     "react",
     "express",
@@ -11,13 +10,8 @@
     "node",
     "mern"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/shamahoque/mern-skeleton.git"
-  },
-  "homepage": "https://github.com/shamahoque/mern-skeleton",
-  "main": "./dist/server.generated.js",
-  "scripts": {
+    "main": "./dist/server.generated.js",
+    "scripts": {
     "development": "nodemon",
     "build": "webpack --config webpack.config.client.production.js && webpack --mode=production --config webpack.config.server.js",
     "start": "NODE_ENV=production node ./dist/server.generated.js"
