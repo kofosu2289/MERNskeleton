@@ -62,8 +62,14 @@ class Profile extends Component {
       return <Redirect to='/signin'/>
     }
     return (
-      <Paper className={classes.root} elevation={4}>
-        <Typography type="title" className={classes.title}>
+      <Paper 
+          className={classes.root} 
+          elevation={4}
+      >
+        <Typography 
+            type="title" 
+            className={classes.title}
+        >
           Profile
         </Typography>
         <List dense>
@@ -86,6 +92,9 @@ class Profile extends Component {
             }
           </ListItem>
           <Divider/>
+          <ListItem>
+            <ListItemText primary = {this.state.user.about} />
+          </ListItem>
           <ListItem>
             <ListItemText primary={"Joined: " + (
               new Date(this.state.user.created)).toDateString()}/>

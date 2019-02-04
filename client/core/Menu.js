@@ -17,11 +17,17 @@ const isActive = (history, path) => {
 const Menu = withRouter(({history}) => (
   <AppBar position="static">
     <Toolbar>
-      <Typography type="title" color="inherit">
+      <Typography 
+          type="title" 
+          color="inherit"
+      >
         Node CRUD CMS
       </Typography>
       <Link to="/">
-        <IconButton aria-label="Home" style={isActive(history, "/")}>
+        <IconButton 
+            aria-label="Home" 
+            style={isActive(history, "/")}
+        >
           <HomeIcon/>
         </IconButton>
       </Link>
