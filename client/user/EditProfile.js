@@ -108,6 +108,14 @@ class EditProfile extends Component {
                 value={this.state.name} 
                 onChange={this.handleChange('name')} 
                 margin="normal"/><br/>
+          <TextField
+                id = "multiline-flexible"
+                label = "About"
+                multiline
+                rows = "2"
+                value = {this.state.about}
+                onChange = {this.handleChange('about')}
+            />
           <TextField 
               id="email" 
               type="email" 
@@ -126,14 +134,6 @@ class EditProfile extends Component {
               onChange={this.handleChange('password')} 
               margin="normal"
           />
-          <TextField
-                id = "multiline-flexible"
-                label = "About"
-                multiline
-                rows = "2"
-                value = {this.state.about}
-                onChange = {this.handleChange('about')}
-            />
           <br/> {
             this.state.error && (<Typography component="p" color="error">
               <Icon color="error" className={classes.error}>error</Icon>
