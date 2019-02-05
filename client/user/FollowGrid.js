@@ -15,7 +15,7 @@ const styles = theme => ({
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
-        background: theme.paletter.background.paper
+        background: theme.palette.background.paper
     },
     bigAvatar: {
         width: 60,

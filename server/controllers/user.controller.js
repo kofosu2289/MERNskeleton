@@ -27,9 +27,9 @@ const userByID = (req, res, next, id) => {
     .populate('following', '_id name')
     .populate('followers', '_id name')
     .exec((err, user) => {
-      if(err || !user) return res.status('400').json({
-        error: "User not found"
-      })
+    if (err || !user) return res.status('400').json({
+      error: "User not found"
+    })
     req.profile = user
     next()
   })
@@ -118,7 +118,7 @@ const addFollowing = (req, res, next) => {
   })
 }
 
- const addFollower = (req, res) => {
+const addFollower = (req, res) => {
   User.findByIdAndUpdate(req.body.followId, {$push: {followers: req.body.userId}}, {new: true})
   .populate('following', '_id name')
   .populate('followers', '_id name')
@@ -134,7 +134,7 @@ const addFollowing = (req, res, next) => {
   })
 }
 
- const removeFollowing = (req, res, next) => {
+const removeFollowing = (req, res, next) => {
   User.findByIdAndUpdate(req.body.userId, {$pull: {following: req.body.unfollowId}}, (err, result) => {
     if (err) {
       return res.status(400).json({
@@ -158,7 +158,20 @@ const removeFollower = (req, res) => {
     result.salt = undefined
     res.json(result)
 
-   })
+  })
+}
+
+const findPeople = (req, res) => {
+  let following = req.profile.following
+  following.push(req.profile._id)
+  User.find({ _id: { $nin : following } }, (err, users) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(users)
+  }).select('name')
 }
 
 export default {
@@ -173,5 +186,6 @@ export default {
   addFollowing,
   addFollower,
   removeFollowing,
-  removeFollower
+  removeFollower,
+  findPeople
 }
