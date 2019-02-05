@@ -29,11 +29,7 @@ const signin = (req, res) => {
 
     return res.json({
       token,
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email
-      }
+      user: {_id: user._id, name: user.name, email: user.email}
     })
 
   })
@@ -54,7 +50,7 @@ const requireSignin = expressJwt({
 const hasAuthorization = (req, res, next) => {
   const authorized = req.profile && req.auth && req.profile._id == req.auth._id
   if (!(authorized)) {
-    return res.status('403').json({
+    return res.status('401').json({
       error: "User is not authorized"
     })
   }

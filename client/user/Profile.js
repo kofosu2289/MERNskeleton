@@ -23,8 +23,14 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 5
   }),
   title: {
-    margin: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 2}px`,
-    color: theme.palette.protectedTitle
+    margin: `${theme.spacing.unit * 2}px ${theme.spacing.unit}px 0`,
+    color: theme.palette.protectedTitle,
+    fontSize: '1em'
+  },
+  bigAvatar: {
+    width: 60,
+    height: 60,
+    margin: 10
   }
 })
 
@@ -57,30 +63,25 @@ class Profile extends Component {
   }
   render() {
     const {classes} = this.props
+    const photoUrl = this.state.user._id
+              ? `/api/users/photo/${this.state.user._id}?${new Date().getTime()}`
+              : '/api/users/defaultphoto'
     const redirectToSignin = this.state.redirectToSignin
     if (redirectToSignin) {
       return <Redirect to='/signin'/>
     }
     return (
-      <Paper 
-          className={classes.root} 
-          elevation={4}
-      >
-        <Typography 
-            type="title" 
-            className={classes.title}
-        >
+      <Paper className={classes.root} elevation={4}>
+        <Typography type="title" className={classes.title}>
           Profile
         </Typography>
         <List dense>
           <ListItem>
             <ListItemAvatar>
-              <Avatar>
-                <Person/>
-              </Avatar>
+              <Avatar src={photoUrl} className={classes.bigAvatar}/>
             </ListItemAvatar>
             <ListItemText primary={this.state.user.name} secondary={this.state.user.email}/> {
-             auth.isAuthenticated().user && auth.isAuthenticated().user._id == this.state.user._id && 
+             auth.isAuthenticated().user && auth.isAuthenticated().user._id == this.state.user._id &&
               (<ListItemSecondaryAction>
                 <Link to={"/user/edit/" + this.state.user._id}>
                   <IconButton aria-label="Edit" color="primary">
@@ -93,10 +94,7 @@ class Profile extends Component {
           </ListItem>
           <Divider/>
           <ListItem>
-            <ListItemText primary = {this.state.user.about} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary={"Joined: " + (
+            <ListItemText primary={this.state.user.about} secondary={"Joined: " + (
               new Date(this.state.user.created)).toDateString()}/>
           </ListItem>
         </List>

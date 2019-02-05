@@ -18,7 +18,7 @@ import StaticRouter from 'react-router-dom/StaticRouter'
 import { SheetsRegistry } from 'react-jss/lib/jss'
 import JssProvider from 'react-jss/lib/JssProvider'
 import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from 'material-ui/styles'
-import { indigo, pink } from 'material-ui/colors'
+import {teal, orange} from 'material-ui/colors'
 //end
 
 //comment out before building for production
@@ -51,37 +51,28 @@ app.get('*', (req, res) => {
    const theme = createMuiTheme({
      palette: {
        primary: {
-       light: '#757de8',
-       main: '#3f51b5',
-       dark: '#002984',
+       light: '#52c7b8',
+       main: '#009688',
+       dark: '#00675b',
        contrastText: '#fff',
      },
      secondary: {
-       light: '#ff79b0',
-       main: '#ff4081',
-       dark: '#c60055',
+       light: '#ffd95b',
+       main: '#ffa726',
+       dark: '#c77800',
        contrastText: '#000',
      },
-       openTitle: indigo['400'],
-       protectedTitle: pink['400'],
+       openTitle: teal['700'],
+       protectedTitle: orange['700'],
        type: 'light'
-     },
+     }
    })
    const generateClassName = createGenerateClassName()
    const context = {}
    const markup = ReactDOMServer.renderToString(
-      <StaticRouter 
-          location={req.url} 
-          context={context}
-      >
-         <JssProvider 
-            registry={sheetsRegistry} 
-            generateClassName={generateClassName}
-        >
-            <MuiThemeProvider 
-                theme={theme} 
-                sheetsManager={new Map()}
-            >
+      <StaticRouter location={req.url} context={context}>
+         <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+            <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
               <MainRouter/>
             </MuiThemeProvider>
          </JssProvider>
