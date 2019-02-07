@@ -23,6 +23,7 @@ class FollowProfileButton extends Component {
     }
 }
 FollowProfileButton.propTypes = {
+    following: PropTypes.bool.isRequired,
     onButtonClick: PropTypes.func.isRequired
 }
 
