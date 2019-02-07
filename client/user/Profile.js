@@ -15,6 +15,7 @@ import {read} from './api-user.js'
 import {Redirect, Link} from 'react-router-dom'
 import FollowProfileButton from './../user/FollowProfileButton'
 import ProfileTabs from './../user/ProfileTabs'
+import {listByUser} from './../post/api-post'
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -44,7 +45,8 @@ class Profile extends Component {
         followers: []
       },
       redirectToSignin: false,
-      following: false
+      following: false,
+      posts: []
     }
     this.match = match
   }
@@ -58,6 +60,7 @@ class Profile extends Component {
       } else {
         let following = this.checkFollow(data)
         this.setState({user: data, following: following})
+        this.loadPosts(data._id)
       }
     })
   }
@@ -87,6 +90,26 @@ class Profile extends Component {
         this.setState({user:data, following: !this.state.following})
       }
     })
+  }
+  loadPosts = (user) => {
+    const jwt = auth.isAuthenticated()
+    listByUser({
+      userId: user
+    }, {
+      t: jwt.token
+    }).then((data) => {
+      if(data.error) {
+        console.log(data.error)
+      } else {
+        this.setState({posts: data})
+      }
+    })
+  }
+  removePost = (post) => {
+    const updatedPosts = this.state.posts
+    const index = updatedPosts.indexOf(post)
+    updatedPosts.splice(index, 1)
+    this.setState({posts: updatedPosts})
   }
   render() {
     const {classes} = this.props
@@ -126,7 +149,7 @@ class Profile extends Component {
               new Date(this.state.user.created)).toDateString()}/>
           </ListItem>
         </List>
-        <ProfileTabs user = {this.state.user} />
+        <ProfileTabs user = {this.state.user} posts = {this.state.posts} removePostUpdate = {this.removePost} />
       </Paper>
     )
   }
