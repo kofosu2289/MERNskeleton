@@ -86,12 +86,47 @@ const create = (params, credentials, post) => {
     })
   }
   
+  const comment = (params, credentials, postId, comment) => {
+    return fetch('/api/posts/comment/', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      },
+      body: JSON.stringify({userId:params.userId, postId: postId, comment: comment})
+    }).then((response) => {
+      return response.json()
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+  
+   const uncomment = (params, credentials, postId, comment) => {
+    return fetch('/api/posts/uncomment/', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      },
+      body: JSON.stringify({userId:params.userId, postId: postId, comment: comment})
+    }).then((response) => {
+      return response.json()
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+  
+
   export {
     listNewsFeed,
     listByUser,
     create,
     remove,
     like,
-    unlike
+    unlike,
+    comment,
+    uncomment
   }
   
