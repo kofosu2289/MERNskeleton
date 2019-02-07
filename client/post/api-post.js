@@ -1,57 +1,97 @@
 const create = (params, credentials, post) => {
-    return fetch('api/posts/new' + params.userId, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Authorization': 'Bearer' + credentials.t
-        },
-        body: post
+    return fetch('/api/posts/new/'+ params.userId, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      },
+      body: post
     }).then((response) => {
-        return response.json()
+      return response.json()
     }).catch((err) => {
-        console.log(err)
+      console.log(err)
     })
-}
-
-const listByUser = (params, credentials) =>{
-    return fetch('/api/posts/by/' + params.userId, {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer' + credentials.t
-        }
+  }
+  
+  const listByUser = (params, credentials) => {
+    return fetch('/api/posts/by/'+ params.userId, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
     }).then(response => {
-        return response.json()
+      return response.json()
     }).catch((err) => console.log(err))
-}
-
-const listNewsFeed = (params, credentials) => {
-    return fetch('/api/posts/feed' + params.userId, {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer' + credentials.t
-        }
+  }
+  
+  const listNewsFeed = (params, credentials) => {
+    return fetch('/api/posts/feed/'+ params.userId, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
     }).then(response => {
-        return response.json()
+      return response.json()
     }).catch((err) => console.log(err))
-}
-
-const remove = (params, credentials) => {
-    return fetch('/api/posts' + params.postId + '/' + params.userId, {
-        method: 'DELETE',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer' + credentials.t
-        }
+  }
+  
+  const remove = (params, credentials) => {
+    return fetch('/api/posts/' + params.postId +'/' +params.userId, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
     }).then((response) => {
-        return response.json()
+      return response.json()
     }).catch((err) => {
-        console.log(err)
+      console.log(err)
     })
-}
-
-export { listNewsFeed, listByUser, create, remove }
+  }
+  
+  const like = (params, credentials, postId) => {
+    return fetch('/api/posts/like/', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      },
+      body: JSON.stringify({userId:params.userId, postId: postId})
+    }).then((response) => {
+      return response.json()
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+  
+  const unlike = (params, credentials, postId) => {
+    return fetch('/api/posts/unlike/', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      },
+      body: JSON.stringify({userId:params.userId, postId: postId})
+    }).then((response) => {
+      return response.json()
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+  
+  export {
+    listNewsFeed,
+    listByUser,
+    create,
+    remove,
+    like,
+    unlike
+  }
+  
