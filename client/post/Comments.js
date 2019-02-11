@@ -86,7 +86,7 @@ class Comments extends Component {
           <span className={classes.commentDate}>
             {(new Date(item.created)).toDateString()} |
             {auth.isAuthenticated().user._id === item.postedBy._id &&
-              <Icon onClick={this.deleteComment(item)} className={classes.commentDelete}>delete</Icon> }
+              <Icon onClick={this.deleteComment(item)} className={classes.commentDelete}>Delete</Icon> }
           </span>
         </p>
       )

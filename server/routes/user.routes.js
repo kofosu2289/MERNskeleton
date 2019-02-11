@@ -4,7 +4,7 @@ import authCtrl from '../controllers/auth.controller'
 
 const router = express.Router()
 
-router.route('/api/users')
+router.route('/api/users')//Listing users with GET, Creating a new user with POST
   .get(userCtrl.list)
   .post(userCtrl.create)
 
@@ -21,7 +21,7 @@ router.route('/api/users/unfollow')
 router.route('/api/users/findpeople/:userId')
    .get(authCtrl.requireSignin, userCtrl.findPeople)
 
-router.route('/api/users/:userId')
+router.route('/api/users/:userId')//Fetching a user with GET, Updating a user with PUT, Deleting a user with DELETE
   .get(authCtrl.requireSignin, userCtrl.read)
   .put(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.update)
   .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.remove)

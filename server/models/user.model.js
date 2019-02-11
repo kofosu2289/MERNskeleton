@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 import crypto from 'crypto'
+
+//define user
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -13,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     match: [/.+\@.+\..+/, 'PLEASE PROVIDE A VALID EMAIL ADDRESS'],
     required: 'EMAIL IS REQUIRED'
   },
-  hashed_password: {
+  hashed_password: {//actual password is not stored in the database for security purposes
     type: String,
     required: "PASSWORD IS REQUIRED"
   },
@@ -35,6 +37,7 @@ const UserSchema = new mongoose.Schema({
   followers: [{type: mongoose.Schema.ObjectId, ref: 'User'}]
 })
 
+//when the password value is received on user creation or update, it is encrypted into a new hashed value and set to the hashed_password field, along with the salt value in the salt field
 UserSchema
   .virtual('password')
   .set(function(password) {
@@ -46,6 +49,7 @@ UserSchema
     return this._password
   })
 
+  //password validation: 6 characters or more
 UserSchema.path('hashed_password').validate(function(v) {
   if (this._password && this._password.length < 6) {
     this.invalidate('password', 'PASSWORD MJST BE AT LEAST 6 CHARACTERS')
@@ -58,8 +62,9 @@ UserSchema.path('hashed_password').validate(function(v) {
 UserSchema.methods = {
   authenticate: function(plainText) {
     return this.encryptPassword(plainText) === this.hashed_password
-  },
+  },//called when user provides password upon sign in
   encryptPassword: function(password) {
+    //called when a new password is created, along with makeSalt
     if (!password) return ''
     try {
       return crypto

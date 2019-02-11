@@ -79,7 +79,7 @@ class FindPeople extends Component {
     return (<div>
       <Paper className={classes.root} elevation={4}>
         <Typography type="title" className={classes.title}>
-          Who to follow
+          Who To Follow
         </Typography>
         <List>
           {this.state.users.map((item, i) => {

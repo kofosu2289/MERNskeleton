@@ -1,13 +1,13 @@
-import config from './../config/config'
-import app from './express'
+import config from './../config/config'//set port number for app
+import app from './express'//import configured express app
 import mongoose from 'mongoose'
 
 // Connection URL
-mongoose.Promise = global.Promise
+mongoose.Promise = global.Promise//configure mongoose to handle Promises
 mongoose.connect(config.mongoUri)
 mongoose.connection.on('error', () => {
   throw new Error(`UNABLE TO CONNECT TO DATABASE: ${mongoUri}`)
-})
+})//use mongoose to handle connection to MongoDB database 
 
 app.listen(config.port, (err) => {
   if (err) {

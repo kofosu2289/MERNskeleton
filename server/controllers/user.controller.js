@@ -5,6 +5,7 @@ import formidable from 'formidable'
 import fs from 'fs'
 import profileImage from './../../client/assets/images/profile-pic.png'
 
+//create a new user
 const create = (req, res, next) => {
   const user = new User(req.body)
   user.save((err, result) => {
@@ -35,12 +36,14 @@ const userByID = (req, res, next, id) => {
   })
 }
 
+//read data of user with the specified ID
 const read = (req, res) => {
   req.profile.hashed_password = undefined
   req.profile.salt = undefined
   return res.json(req.profile)
 }
 
+//List all users
 const list = (req, res) => {
   User.find((err, users) => {
     if (err) {
@@ -50,8 +53,10 @@ const list = (req, res) => {
     }
     res.json(users)
   }).select('name email updated created')
+  //populate only name, email, created and updated fields
 }
 
+//update data of user with the requested ID
 const update = (req, res, next) => {
   let form = new formidable.IncomingForm()
   form.keepExtensions = true
@@ -81,6 +86,7 @@ const update = (req, res, next) => {
   })
 }
 
+//delete data of user with the requested ID
 const remove = (req, res, next) => {
   let user = req.profile
   user.remove((err, deletedUser) => {

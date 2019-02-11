@@ -115,7 +115,7 @@ class NewPost extends Component {
           </IconButton>
         </label> <span className={classes.filename}>{this.state.photo ? this.state.photo.name : ''}</span>
         { this.state.error && (<Typography component="p" color="error">
-            <Icon color="error" className={classes.error}>error</Icon>
+            <Icon color="error" className={classes.error}>Error</Icon>
               {this.state.error}
             </Typography>)
         }

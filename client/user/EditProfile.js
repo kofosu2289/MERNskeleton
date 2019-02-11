@@ -129,8 +129,9 @@ class EditProfile extends Component {
           <TextField id="name" label="Name" className={classes.textField} value={this.state.name} onChange={this.handleChange('name')} margin="normal"/><br/>
           <TextField
             id="multiline-flexible"
-            label="Tell us something about yourself!"
+            label="About"
             multiline
+            placeholder = "Tell us something about yourself!"
             rows="2"
             value={this.state.about}
             onChange={this.handleChange('about')}
