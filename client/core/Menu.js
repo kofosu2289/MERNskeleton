@@ -24,10 +24,11 @@ const Menu = withRouter(({history}) => (
         <IconButton aria-label="Home" style={isActive(history, "/")}>
           <HomeIcon/>
         </IconButton>
-      </Link> {
+      </Link>
+      {
         !auth.isAuthenticated() && (<span>
           <Link to="/signup">
-            <Button style={isActive(history, "/signup")}>Sign up
+            <Button style={isActive(history, "/signup")}>Sign Up
             </Button>
           </Link>
           <Link to="/signin">
@@ -43,7 +44,7 @@ const Menu = withRouter(({history}) => (
           </Link>
           <Button color="inherit" onClick={() => {
               auth.signout(() => history.push('/'))
-            }}>Sign out</Button>
+            }}>Sign Out</Button>
         </span>)
       }
     </Toolbar>

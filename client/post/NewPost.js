@@ -12,7 +12,7 @@ import auth from './../auth/auth-helper'
 import IconButton from 'material-ui/IconButton'
 import PhotoCamera from 'material-ui-icons/PhotoCamera'
 
- const styles = theme => ({
+const styles = theme => ({
   root: {
     backgroundColor: '#efefef',
     padding: `${theme.spacing.unit*3}px 0px 1px`
@@ -53,7 +53,7 @@ import PhotoCamera from 'material-ui-icons/PhotoCamera'
   }
 })
 
- class NewPost extends Component {
+class NewPost extends Component {
   state = {
     text: '',
     photo: '',
@@ -61,7 +61,7 @@ import PhotoCamera from 'material-ui-icons/PhotoCamera'
     user: {}
   }
 
-   componentDidMount = () => {
+  componentDidMount = () => {
     this.postData = new FormData()
     this.setState({user: auth.isAuthenticated().user})
   }
@@ -83,7 +83,7 @@ import PhotoCamera from 'material-ui-icons/PhotoCamera'
   handleChange = name => event => {
     const value = name === 'photo'
       ? event.target.files[0]
-      : event.target.value;
+      : event.target.value
     this.postData.set(name, value)
     this.setState({ [name]: value })
   }
@@ -128,10 +128,9 @@ import PhotoCamera from 'material-ui-icons/PhotoCamera'
   }
 }
 
- NewPost.propTypes = {
+NewPost.propTypes = {
   classes: PropTypes.object.isRequired,
   addUpdate: PropTypes.func.isRequired
 }
 
- export default withStyles(styles)(NewPost)
-  
+export default withStyles(styles)(NewPost)

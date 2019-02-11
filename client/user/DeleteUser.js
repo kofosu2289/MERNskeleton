@@ -46,7 +46,7 @@ class DeleteUser extends Component {
         <DialogTitle>{"Delete Account"}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Confirm to delete your account.
+            Confirm to DELETE YOUR ACCOUNT.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

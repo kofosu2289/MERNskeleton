@@ -77,7 +77,7 @@ class Signup extends Component {
           <TextField id="password" type="password" label="Password" className={classes.textField} value={this.state.password} onChange={this.handleChange('password')} margin="normal"/>
           <br/> {
             this.state.error && (<Typography component="p" color="error">
-              <Icon color="error" className={classes.error}>error</Icon>
+              <Icon color="error" className={classes.error}>Error</Icon>
               {this.state.error}</Typography>)
           }
         </CardContent>
@@ -89,7 +89,7 @@ class Signup extends Component {
         <DialogTitle>New Account</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            New account successfully created.
+            New Account Successfully Created.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

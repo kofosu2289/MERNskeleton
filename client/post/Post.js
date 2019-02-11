@@ -7,12 +7,12 @@ import IconButton from 'material-ui/IconButton'
 import DeleteIcon from 'material-ui-icons/Delete'
 import FavoriteIcon from 'material-ui-icons/Favorite'
 import FavoriteBorderIcon from 'material-ui-icons/FavoriteBorder'
+import CommentIcon from 'material-ui-icons/Comment'
 import Divider from 'material-ui/Divider'
 import PropTypes from 'prop-types'
 import {withStyles} from 'material-ui/styles'
 import {Link} from 'react-router-dom'
 import {remove, like, unlike} from './api-post.js'
-import CommentIcon from 'material-ui-icons/Comment'
 import Comments from './Comments'
 
 const styles = theme => ({

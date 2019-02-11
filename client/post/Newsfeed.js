@@ -9,7 +9,6 @@ import PostList from './PostList'
 import {listNewsFeed} from './api-post.js'
 import NewPost from './NewPost'
 
-
 const styles = theme => ({
   card: {
     margin: 'auto',
@@ -47,15 +46,15 @@ class Newsfeed extends Component {
     this.loadPosts()
   }
   addPost = (post) => {
-      const updatedPosts = this.state.posts
-      updatedPosts.unshift(post)
-      this.setState({posts: updatedPosts})
+    const updatedPosts = this.state.posts
+    updatedPosts.unshift(post)
+    this.setState({posts: updatedPosts})
   }
   removePost = (post) => {
-      const updatedPosts = this.state.posts
-      const index = updatedPosts.indexOf(post)
-      updatedPosts.splice(index, 1)
-      this.setState({posts: updatedPosts})
+    const updatedPosts = this.state.posts
+    const index = updatedPosts.indexOf(post)
+    updatedPosts.splice(index, 1)
+    this.setState({posts: updatedPosts})
   }
   render() {
     const {classes} = this.props
@@ -65,9 +64,9 @@ class Newsfeed extends Component {
           Newsfeed
         </Typography>
         <Divider/>
-        <NewPost addUpdate = {this.addPost} />
-        <Divider />
-        <PostList removeUpdate = {this.removePost} posts={this.state.posts}/>
+        <NewPost addUpdate={this.addPost}/>
+        <Divider/>
+        <PostList removeUpdate={this.removePost} posts={this.state.posts}/>
       </Card>
     )
   }

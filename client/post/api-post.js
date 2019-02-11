@@ -102,7 +102,7 @@ const create = (params, credentials, post) => {
     })
   }
   
-   const uncomment = (params, credentials, postId, comment) => {
+  const uncomment = (params, credentials, postId, comment) => {
     return fetch('/api/posts/uncomment/', {
       method: 'PUT',
       headers: {
@@ -118,7 +118,6 @@ const create = (params, credentials, post) => {
     })
   }
   
-
   export {
     listNewsFeed,
     listByUser,

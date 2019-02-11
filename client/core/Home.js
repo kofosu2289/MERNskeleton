@@ -60,7 +60,7 @@ class Home extends Component {
                 <CardMedia className={classes.media} image={seashellImg} title="Unicorn Shells"/>
                 <CardContent>
                   <Typography type="body1" component="p">
-                    Welcome to the Mern Skeleton home page. 
+                    Welcome to the MERN CRUD CMS home page. 
                   </Typography>
                 </CardContent>
               </Card>

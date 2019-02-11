@@ -9,7 +9,7 @@ import {withStyles} from 'material-ui/styles'
 import {comment, uncomment} from './api-post.js'
 import {Link} from 'react-router-dom'
 
- const styles = theme => ({
+const styles = theme => ({
   cardHeader: {
     paddingTop: theme.spacing.unit,
     paddingBottom: theme.spacing.unit
@@ -38,7 +38,7 @@ import {Link} from 'react-router-dom'
  }
 })
 
- class Comments extends Component {
+class Comments extends Component {
   state = {text: ''}
   handleChange = name => event => {
     this.setState({[name]: event.target.value})
@@ -62,7 +62,7 @@ import {Link} from 'react-router-dom'
     }
   }
 
-   deleteComment = comment => event => {
+  deleteComment = comment => event => {
     const jwt = auth.isAuthenticated()
     uncomment({
       userId: jwt.user._id
@@ -92,7 +92,7 @@ import {Link} from 'react-router-dom'
       )
     }
 
-     return (<div>
+    return (<div>
         <CardHeader
               avatar={
                 <Avatar className={classes.smallAvatar} src={'/api/users/photo/'+auth.isAuthenticated().user._id}/>
@@ -122,11 +122,11 @@ import {Link} from 'react-router-dom'
   }
 }
 
- Comments.propTypes = {
+Comments.propTypes = {
   classes: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   comments: PropTypes.array.isRequired,
   updateComments: PropTypes.func.isRequired
 }
 
- export default withStyles(styles)(Comments)
+export default withStyles(styles)(Comments)
