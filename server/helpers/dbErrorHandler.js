@@ -9,7 +9,7 @@ const getUniqueErrorMessage = (err) => {
         let fieldName = err.message.substring(err.message.lastIndexOf('.$') + 2, err.message.lastIndexOf('_1'))
         output = fieldName.charAt(0).toUpperCase() + fieldName.slice(1) + ' already exists'
     } catch (ex) {
-        output = 'Unique field already exists'
+        output = 'UNIQUE FIELD ALREADY EXISTS'
     }
 
     return output
@@ -28,7 +28,7 @@ const getErrorMessage = (err) => {
                 message = getUniqueErrorMessage(err)
                 break
             default:
-                message = 'Something went wrong'
+                message = "WE'RE SORRY, SOMETHING WENT WRONG"
         }
     } else {
         for (let errName in err.errors) {

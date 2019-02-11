@@ -14,7 +14,7 @@ const create = (req, res, next) => {
       })
     }
     res.status(200).json({
-      message: "Successfully signed up!"
+      message: "SUCCESSFULLY SIGNED UP"
     })
   })
 }
@@ -28,7 +28,7 @@ const userByID = (req, res, next, id) => {
     .populate('followers', '_id name')
     .exec((err, user) => {
     if (err || !user) return res.status('400').json({
-      error: "User not found"
+      error: "USER NOT FOUND"
     })
     req.profile = user
     next()
@@ -58,7 +58,7 @@ const update = (req, res, next) => {
   form.parse(req, (err, fields, files) => {
     if (err) {
       return res.status(400).json({
-        error: "Photo could not be uploaded"
+        error: "PHOTO COULD NOT BE UPLOADED"
       })
     }
     let user = req.profile
@@ -157,7 +157,6 @@ const removeFollower = (req, res) => {
     result.hashed_password = undefined
     result.salt = undefined
     res.json(result)
-
   })
 }
 

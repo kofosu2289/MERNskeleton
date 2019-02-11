@@ -10,7 +10,7 @@ const create = (req, res, next) => {
   form.parse(req, (err, fields, files) => {
     if (err) {
       return res.status(400).json({
-        error: "Image could not be uploaded"
+        error: "IAMGE COULD NOT BE UPLOADED"
       })
     }
     let post = new Post(fields)
@@ -34,7 +34,7 @@ const postByID = (req, res, next, id) => {
   Post.findById(id).populate('postedBy', '_id name').exec((err, post) => {
     if (err || !post)
       return res.status('400').json({
-        error: "Post not found"
+        error: "POST NOT FOUND"
       })
     req.post = post
     next()
@@ -116,45 +116,46 @@ const unlike = (req, res) => {
   })
 }
 
+
 const comment = (req, res) => {
-    let comment = req.body.comment
-    comment.postedBy = req.body.userId
-    Post.findByIdAndUpdate(req.body.postId, {$push: {comments: comment}}, {new: true})
-    .populate('comments.postedBy', '_id name')
-    .populate('postedBy', '_id name')
-    .exec((err, result) => {
-      if (err) {
-        return res.status(400).json({
-          error: errorHandler.getErrorMessage(err)
-        })
-      }
-      res.json(result)
-    })
-  }
-  const uncomment = (req, res) => {
-    let comment = req.body.comment
-    Post.findByIdAndUpdate(req.body.postId, {$pull: {comments: {_id: comment._id}}}, {new: true})
-    .populate('comments.postedBy', '_id name')
-    .populate('postedBy', '_id name')
-    .exec((err, result) => {
-      if (err) {
-        return res.status(400).json({
-          error: errorHandler.getErrorMessage(err)
-        })
-      }
-      res.json(result)
-    })
-  }
-  
-  const isPoster = (req, res, next) => {
-    let isPoster = req.post && req.auth && req.post.postedBy._id == req.auth._id
-    if(!isPoster){
-      return res.status('403').json({
-        error: "User is not authorized"
+  let comment = req.body.comment
+  comment.postedBy = req.body.userId
+  Post.findByIdAndUpdate(req.body.postId, {$push: {comments: comment}}, {new: true})
+  .populate('comments.postedBy', '_id name')
+  .populate('postedBy', '_id name')
+  .exec((err, result) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
       })
     }
-    next()
+    res.json(result)
+  })
+}
+const uncomment = (req, res) => {
+  let comment = req.body.comment
+  Post.findByIdAndUpdate(req.body.postId, {$pull: {comments: {_id: comment._id}}}, {new: true})
+  .populate('comments.postedBy', '_id name')
+  .populate('postedBy', '_id name')
+  .exec((err, result) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(result)
+  })
+}
+
+const isPoster = (req, res, next) => {
+  let isPoster = req.post && req.auth && req.post.postedBy._id == req.auth._id
+  if(!isPoster){
+    return res.status('403').json({
+      error: "USER IS NOT AUTHORIZED"
+    })
   }
+  next()
+}
 
 export default {
   listByUser,
